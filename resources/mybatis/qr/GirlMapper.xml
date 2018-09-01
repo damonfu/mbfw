@@ -3,5 +3,49 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="GirlMapper">
 
+	<insert id="insertGril" parameterType="Girl">
+		insert into tb_girls (
+		_id,
+		createdAt,
+		publishedAt,
+		`source`,
+		url,
+		used
+		) values (
+		#{_id},
+		#{createdAt},
+		#{publishedAt},
+		#{source},
+		#{url},
+		#{used}
+		)
+	</insert>
+
+	<!-- 新增 -->
+	<insert id="insertGrils" parameterType="java.util.List" flushCache="false">
+		insert into tb_girls (
+		_id,
+		createdAt,
+		publishedAt,
+		`source`,
+		url,
+		used
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item._id},
+			#{item.createdAt},
+			#{item.publishedAt},
+			#{item.source},
+			#{item.url},
+			#{item.used}
+			)
+		</foreach>
+	</insert>
+
+	<select id="findByLimitPage" parameterType="PageLimit" resultType="Girl">
+		select  * from tb_girls
+		where used=true order by `_id` desc limit #{start},#{size};
+	</select>
 	
 </mapper>

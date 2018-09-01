@@ -19,6 +19,7 @@
 		<typeAlias type="com.mbfw.entity.Page" alias="Page"/>
 
 		<typeAlias type="com.mbfw.entity.qr.Girl" alias="Girl"/>
+		<typeAlias type="com.mbfw.entity.qr.PageLimit" alias="PageLimit"/>
 	</typeAliases>
 	
 	<plugins>
