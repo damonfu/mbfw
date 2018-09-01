@@ -17,6 +17,8 @@
 		<typeAlias type="com.mbfw.util.PageData" alias="pd"/>
 		<!-- 分页 -->
 		<typeAlias type="com.mbfw.entity.Page" alias="Page"/>
+
+		<typeAlias type="com.mbfw.entity.qr.Girl" alias="Girl"/>
 	</typeAliases>
 	
 	<plugins>
