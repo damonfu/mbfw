@@ -18,43 +18,45 @@
 		where _id=#{_id}
 	</delete>
 
-	<update id="updateQrcode" parameterType="QrcodeImg">
+	<update id="updateQrcode" parameterType="pd">
 		update tb_qrcode set
-			`size`=#{size},
-			startX=#{startX},
-			startY=#{startY},
-			prev=#{prev},
-			img=#{img},
-			rotate=#{rotate},
-			forecolor=#{forecolor},
-			backcolor=#{backcolor},
-			qrstyle=#{qrstyle},
-			styleimg=#{styleimg},
-			lefteyestyle=#{lefteyestyle},
-			lefteyeoutcolor=#{lefteyeoutcolor},
-			lefteyeincolor=#{lefteyeincolor},
-			righteyestyle=#{righteyestyle},
-			righteyeoutcolor=#{righteyeoutcolor},
-			righteyeincolor=#{righteyeincolor},
-			bottomeyestyle=#{bottomeyestyle},
-			bottomeyeoutcolor=#{bottomeyeoutcolor},
-			bottomeyeincolor=#{bottomeyeincolor},
-			framestyle=#{framestyle},
-			framecolor=#{framecolor},
-			framesize=#{framesize},
-			frameoutsize=#{frameoutsize},
-			frameinsize=#{frameinsize},
-			logo=#{logo},
-			index=#{index}
+		    `name`=#{NAME},
+			`size`=#{SIZE},
+			x=#{X},
+			y=#{Y},
+			prev=#{PREV},
+			img=#{IMG},
+			rotate=#{ROTATE},
+			forecolor=#{FORECOLOR},
+			backcolor=#{BACKCOLOR},
+			qrstyle=#{QRSTYLE},
+			styleimg=#{STYLEIMG},
+			lefteyestyle=#{LEFTEYESTYLE},
+			lefteyeoutcolor=#{LEFTEYEOUTCOLOR},
+			lefteyeincolor=#{LEFTEYEINCOLOR},
+			righteyestyle=#{RIGHTEYESTYLE},
+			righteyeoutcolor=#{RIGHTEYEOUTCOLOR},
+			righteyeincolor=#{RIGHTEYEINCOLOR},
+			bottomeyestyle=#{BOTTOMEYESTYLE},
+			bottomeyeoutcolor=#{BOTTOMEYEOUTCOLOR},
+			bottomeyeincolor=#{BOTTOMEYEINCOLOR},
+			framestyle=#{FRAMESTYLE},
+			framecolor=#{FRAMECOLOR},
+			framesize=#{FRAMESIZE},
+			frameoutsize=#{FRAMEOUTSIZE},
+			frameinsize=#{FRAMEINSIZE},
+			logo=#{LOGO},
+			index=#{INDEX}
 		where
-			_id=#{_id}
+			_id=#{_ID}
 	</update>
 
-	<insert id="insertQrcode" parameterType="QrcodeImg">
+	<insert id="save" parameterType="pd">
 		insert into tb_qrcode (
+		`name`,
 		`size`,
-		startX,
-		startY,
+		`x`,
+		`y`,
 		prev,
 		img,
 		rotate,
@@ -77,35 +79,80 @@
 		frameoutsize,
 		frameinsize,
 		logo,
-		index
+		`index`
 		) values (
-		#{size},
-		#{startX},
-		#{startY},
-		#{prev},
-		#{img},
-		#{rotate},
-		#{forecolor},
-		#{backcolor},
-		#{qrstyle},
-		#{styleimg},
-		#{lefteyestyle},
-		#{lefteyeoutcolor},
-		#{lefteyeincolor},
-		#{righteyestyle},
-		#{righteyeoutcolor},
-		#{righteyeincolor},
-		#{bottomeyestyle},
-		#{bottomeyeoutcolor},
-		#{bottomeyeincolor},
-		#{framestyle},
-		#{framecolor},
-		#{framesize},
-		#{frameoutsize},
-		#{frameinsize},
-		#{logo},
-		#{index}
+		#{NAME},
+		#{SIZE},
+		#{X},
+		#{Y},
+		#{PREV},
+		#{IMG},
+		#{ROTATE},
+		#{FORECOLOR},
+		#{BACKCOLOR},
+		#{QRSTYLE},
+		#{STYLEIMG},
+		#{LEFTEYESTYLE},
+		#{LEFTEYEOUTCOLOR},
+		#{LEFTEYEINCOLOR},
+		#{RIGHTEYESTYLE},
+		#{RIGHTEYEOUTCOLOR},
+		#{RIGHTEYEINCOLOR},
+		#{BOTTOMEYESTYLE},
+		#{BOTTOMEYEOUTCOLOR},
+		#{BOTTOMEYEINCOLOR},
+		#{FRAMESTYLE},
+		#{FRAMECOLOR},
+		#{FRAMESIZE},
+		#{FRAMEOUTSIZE},
+		#{FRAMEINSIZE},
+		#{LOGO},
+		#{INDEX}
 		)
 	</insert>
-	
+
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		a._id,
+		a.name,
+		a.size,
+		a.prev,
+		a.img,
+		a.x,
+		a.y,
+		a.rotate,
+		a.forecolor,
+		a.backcolor,
+		a.qrstyle,
+		a.styleimg,
+		a.lefteyestyle,
+		a.lefteyeoutcolor,
+		a.lefteyeincolor,
+		a.righteyestyle,
+		a.righteyeoutcolor,
+		a.righteyeincolor,
+		a.bottomeyestyle,
+		a.bottomeyeoutcolor,
+		a.bottomeyeincolor,
+		a.framestyle,
+		a.framecolor,
+		a.framesize,
+		a.frameoutsize,
+		a.frameinsize,
+		a.logo,
+		a.index
+		from
+		tb_qrcode a
+		where 1 = 1
+		<if test="pd.KEYW != null and pd.KEYW != ''"><!-- 关键词检索 -->
+			and
+			(
+			a.name LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
+			)
+		</if>
+		order by _id desc
+	</select>
+
+
 </mapper>

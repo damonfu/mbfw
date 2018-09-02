@@ -1,8 +1,10 @@
 package com.mbfw.service.qr;
 
 import com.mbfw.dao.DaoSupport;
+import com.mbfw.entity.Page;
 import com.mbfw.entity.qr.PageLimit;
 import com.mbfw.entity.qr.QrcodeImg;
+import com.mbfw.util.PageData;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,24 +27,6 @@ public class QrcodeImgService {
     }
 
     /**
-     * 保存
-     * @param qrcodeImg
-     * @throws Exception
-     */
-    public void saveQrcodeImg(QrcodeImg qrcodeImg) throws Exception {
-        dao.save("QrcodeMapper.insertQrcode", qrcodeImg);
-    }
-
-    /**
-     * 更新
-     * @param qrcodeImg
-     * @throws Exception
-     */
-    public void updateQrcodeImg(QrcodeImg qrcodeImg) throws Exception {
-        dao.update("QrcodeMapper.updateQrcode", qrcodeImg);
-    }
-
-    /**
      * 查找所有
      * @param pageLimit
      * @return
@@ -59,5 +43,13 @@ public class QrcodeImgService {
      */
     public void deleteQrcodeImg(int _id) throws Exception {
         dao.delete("QrcodeMapper.deleteQrcode", _id);
+    }
+
+    public List<PageData> list(Page page) throws Exception {
+        return (List<PageData>) dao.findForList("QrcodeMapper.datalistPage", page);
+    }
+
+    public void save(PageData pd) throws Exception {
+        dao.save("QrcodeMapper.save", pd);
     }
 }

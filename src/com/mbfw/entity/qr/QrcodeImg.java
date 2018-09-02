@@ -2,6 +2,7 @@ package com.mbfw.entity.qr;
 
 public class QrcodeImg {
     private int _id;
+    private String name;               //名称
     private int size;                  //大小
     private int startX;                //x轴初始点
     private int startY;                //y轴初始点
@@ -35,6 +36,14 @@ public class QrcodeImg {
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getSize() {
