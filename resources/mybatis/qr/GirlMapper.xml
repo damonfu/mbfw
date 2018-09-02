@@ -45,7 +45,7 @@
 
 	<select id="findByLimitPage" parameterType="PageLimit" resultType="Girl">
 		select  * from tb_girls
-		where used=true order by `_id` desc limit #{start},#{size};
+		where used=true order by createdAt desc limit #{start},#{size};
 	</select>
 	
 </mapper>

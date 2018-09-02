@@ -20,6 +20,7 @@
 
 		<typeAlias type="com.mbfw.entity.qr.Girl" alias="Girl"/>
 		<typeAlias type="com.mbfw.entity.qr.PageLimit" alias="PageLimit"/>
+		<typeAlias type="com.mbfw.entity.qr.QrcodeImg" alias="QrcodeImg"/>
 	</typeAliases>
 	
 	<plugins>
