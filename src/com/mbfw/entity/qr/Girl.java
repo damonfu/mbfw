@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Girl {
     private String _id;
+    private String name;
     private String createdAt;
     private String publishedAt;
     private String source;
@@ -17,6 +18,14 @@ public class Girl {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCreatedAt() {

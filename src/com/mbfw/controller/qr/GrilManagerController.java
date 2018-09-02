@@ -2,7 +2,7 @@ package com.mbfw.controller.qr;
 
 import com.mbfw.controller.base.BaseController;
 import com.mbfw.entity.Page;
-import com.mbfw.service.qr.QrcodeImgService;
+import com.mbfw.service.qr.GirlService;
 import com.mbfw.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -11,22 +11,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
 import java.io.PrintWriter;
 import java.util.*;
 
 @Controller
-@RequestMapping(value = "/qrman")
-public class QrcodeImgManagerController extends BaseController {
+@RequestMapping(value = "/girlman")
+public class GrilManagerController extends BaseController {
 
-    String menuUrl = "qrman/list.do";
+    String menuUrl = "girlman/list.do";
 
-    @Resource(name = "qrcodeImgService")
-    private QrcodeImgService qrcodeImgService;
+    @Resource(name = "girlService")
+    private GirlService girlService;
+
 
     @RequestMapping(value = "/list")
     public ModelAndView list(Page page) {
-        logBefore(logger, "列表Qrcodeimg");
+        logBefore(logger, "列表girls");
         ModelAndView mv = this.getModelAndView();
         PageData pd;
         try {
@@ -40,8 +42,8 @@ public class QrcodeImgManagerController extends BaseController {
             }
 
             page.setPd(pd);
-            List<PageData> varList = qrcodeImgService.list(page); // 列出temple列表
-            mv.setViewName("qrcode/temple/qrcode_list");
+            List<PageData> varList = girlService.list(page); // 列出temple列表
+            mv.setViewName("qrcode/girl/girl_list");
             mv.addObject("varList", varList);
             mv.addObject("pd", pd);
             mv.addObject(Const.SESSION_QX, this.getHC()); // 按钮权限
@@ -56,13 +58,13 @@ public class QrcodeImgManagerController extends BaseController {
      */
     @RequestMapping(value = "/goEdit")
     public ModelAndView goEdit() {
-        logBefore(logger, "去修改qrcodeimg页面");
+        logBefore(logger, "去修改girl页面");
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            pd = qrcodeImgService.findById(pd); // 根据ID读取
-            mv.setViewName("qrcode/temple/qrcode_edit");
+            pd = girlService.findById(pd); // 根据ID读取
+            mv.setViewName("qrcode/girl/girl_edit");
             mv.addObject("msg", "edit");
             mv.addObject("pd", pd);
         } catch (Exception e) {
@@ -76,13 +78,15 @@ public class QrcodeImgManagerController extends BaseController {
      */
     @RequestMapping(value = "/edit")
     public ModelAndView edit() throws Exception {
-        logBefore(logger, "修改qrcodeimg");
+        logBefore(logger, "修改girl");
         if (!Jurisdiction.buttonJurisdiction(menuUrl, "edit")) {
             return null;
         }
         ModelAndView mv = this.getModelAndView();
         PageData pd = this.getPageData();
-        qrcodeImgService.edit(pd);
+        pd.put("USED", true);
+        pd.put("PUBLISHEDAT", Tools.date2Str(new Date()));
+        girlService.edit(pd);
         mv.addObject("msg", "success");
         mv.setViewName("save_result");
         return mv;
@@ -93,20 +97,13 @@ public class QrcodeImgManagerController extends BaseController {
      */
     @RequestMapping(value = "/goAdd")
     public ModelAndView goAdd() {
-        logBefore(logger, "去新增qrimg页面");
+        logBefore(logger, "去新增girl页面");
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            mv.setViewName("qrcode/temple/qrcode_edit");
+            mv.setViewName("qrcode/girl/girl_edit");
             mv.addObject("msg", "save");
-            pd.put("x", 0);
-            pd.put("y", 0);
-            pd.put("rotate", 0);
-            pd.put("framesize", 0);
-            pd.put("frameoutsize", 0);
-            pd.put("frameinsize", 0);
-            pd.put("size", 400);
             mv.addObject("pd", pd);
         } catch (Exception e) {
             logger.error(e.toString(), e);
@@ -119,14 +116,17 @@ public class QrcodeImgManagerController extends BaseController {
      */
     @RequestMapping(value = "/save")
     public ModelAndView save() throws Exception {
-        logBefore(logger, "新增qrimg");
+        logBefore(logger, "新增qirl");
         if (!Jurisdiction.buttonJurisdiction(menuUrl, "add")) {
             return null;
         } // 校验权限
         ModelAndView mv = this.getModelAndView();
-        PageData pd = new PageData();
-        pd = this.getPageData();
-        qrcodeImgService.save(pd);
+        PageData pd = this.getPageData();
+        pd.put("_ID", this.get32UUID()); // 主键
+        pd.put("CREATEDAT", Tools.date2Str(new Date())); // 创建时间
+        pd.put("USED", true);
+        pd.put("PUBLISHEDAT", Tools.date2Str(new Date()));
+        girlService.save(pd);
         mv.addObject("msg", "success");
         mv.setViewName("save_result");
         return mv;
@@ -137,14 +137,14 @@ public class QrcodeImgManagerController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     public void delete(PrintWriter out) {
-        logBefore(logger, "删除qrimg");
+        logBefore(logger, "删除girl");
         if (!Jurisdiction.buttonJurisdiction(menuUrl, "del")) {
             return;
         }
-        PageData pd = new PageData();
+        PageData pd;
         try {
             pd = this.getPageData();
-            qrcodeImgService.delete(pd);
+            girlService.delete(pd);
             out.write("success");
             out.close();
         } catch (Exception e) {
@@ -159,7 +159,7 @@ public class QrcodeImgManagerController extends BaseController {
     @RequestMapping(value = "/deleteAll")
     @ResponseBody
     public Object deleteAll() {
-        logBefore(logger, "批量删除qrcodeimg");
+        logBefore(logger, "批量删除girl");
         if (!Jurisdiction.buttonJurisdiction(menuUrl, "del")) {
             return null;
         }
@@ -171,7 +171,7 @@ public class QrcodeImgManagerController extends BaseController {
             String DATA_IDS = pd.getString("DATA_IDS");
             if (null != DATA_IDS && !"".equals(DATA_IDS)) {
                 String ArrayDATA_IDS[] = DATA_IDS.split(",");
-                qrcodeImgService.deleteAll(ArrayDATA_IDS);
+                girlService.deleteAll(ArrayDATA_IDS);
                 pd.put("msg", "ok");
             } else {
                 pd.put("msg", "no");
