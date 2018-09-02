@@ -43,9 +43,6 @@
 						</span>
 					</td>
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
-					<c:if test="${QX.cha == 1 }">
-					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-					</c:if>
 				</tr>
 			</table>
 			<!-- 检索  -->
@@ -99,11 +96,13 @@
 						<c:forEach items="${varList}" var="var" varStatus="vs">
 							<tr>
 								<td class='center' style="width: 30px;">
-									<label><input type='checkbox' name='ids' value="${var.PICTURES_ID}" /><span class="lbl"></span></label>
+									<label><input type='checkbox' name='ids' value="${var._id}" /><span class="lbl"></span></label>
 								</td>
 								<td class='center' style="width: 30px;">${vs.index+1}</td>
 										<td>${var.name}</td>
-										<td>${var.prev}</td>
+										<td>
+											<img src="${var.prev}" alt="${var.name}" width="80"/>
+										</td>
 										<td>${var.img}</td>
 										<td>${var.size}</td>
 										<td>${var.x}</td>

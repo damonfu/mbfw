@@ -72,20 +72,26 @@
                                    title="大小"/></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="PREV" id="prev" value="${pd.prev }" maxlength="400" placeholder="这里输入预览图"
+                        <td><input type="url" name="PREV" id="prev" value="${pd.prev }" maxlength="400" placeholder="这里输入预览图"
                                    title="预览图"/></td>
-                        <td><input type="text" name="IMG" id="img" value="${pd.img }" maxlength="400" placeholder="这里输入模板图片"
+                        <td><input type="url" name="IMG" id="img" value="${pd.img }" maxlength="400" placeholder="这里输入模板图片"
                                    title="模板图片"/></td>
-                        <td><input type="text" name="LOGO" id="logo" value="${pd.logo }" maxlength="400" placeholder="这里输入LOGO"
+                        <td><input type="url" name="LOGO" id="logo" value="${pd.logo }" maxlength="400" placeholder="这里输入LOGO"
                                    title="LOGO"/></td>
                     </tr>
                     <tr>
-                        <td><input type="number" name="X" id="x" value="${"add".equals(msg) ? 0 : pd.x }" min="0" placeholder="这里输入X轴坐标"
-                                   title="X轴坐标"/></td>
-                        <td><input type="number" name="Y" id="y" value="${"add".equals(msg) ? 0 :pd.y }" min="0" placeholder="这里输入Y轴坐标"
-                                   title="Y轴坐标"/></td>
-                        <td><input type="number" name="ROTATE" id="rotate" value="${"add".equals(msg) ? 0 :pd.rotate }" max="360" placeholder="这里输入旋转角度"
-                                   title="角度"/></td>
+                        <td>
+                            <input type="number" name="X" id="x" value="${pd.x }" min="0" placeholder="这里输入X轴坐标"
+                                   title="X轴坐标"/>
+                        </td>
+                        <td>
+                            <input type="number" name="Y" id="y" value="${pd.y }" min="0" placeholder="这里输入Y轴坐标"
+                                   title="Y轴坐标"/>
+                        </td>
+                        <td>
+                            <input type="number" name="ROTATE" id="rotate" value="${pd.rotate }" max="360" placeholder="这里输入旋转角度"
+                                   title="角度"/>
+                        </td>
                     </tr>
                     <tr>
                         <td><input type="text" name="LEFTEYESTYLE" id="lefteyestyle" value="${pd.lefteyestyle }" maxlength="10" placeholder="这里输入左码眼样式"
@@ -116,13 +122,13 @@
                                    title="边框样式"/></td>
                         <td><input type="text" name="FRAMECOLOR" id="framecolor" value="${pd.framecolor }" maxlength="10" placeholder="这里输入边框颜色"
                                    title="边框颜色"/></td>
-                        <td><input type="number" name="FRAMESIZE" id="framesize" value="${"add".equals(msg) ? 0 : pd.framesize }" min="0" placeholder="这里输入边框大小"
+                        <td><input type="number" name="FRAMESIZE" id="framesize" value="${pd.framesize }" min="0" placeholder="这里输入边框大小"
                                    title="边框大小"/></td>
                     </tr>
                     <tr>
-                        <td><input type="number" name="FRAMEOUTSIZE" id="frameoutsize" value="${"add".equals(msg) ? 0 : pd.frameoutsize }" min="0" placeholder="这里输入边框外边距"
+                        <td><input type="number" name="FRAMEOUTSIZE" id="frameoutsize" value="${pd.frameoutsize }" min="0" placeholder="这里输入边框外边距"
                                    title="边框外边距"/></td>
-                        <td><input type="number" name="FRAMEINSIZE" id="frameinsize" value="${"add".equals(msg) ? 0 : pd.frameinsize }" min="0" placeholder="这里输入边框内边距"
+                        <td><input type="number" name="FRAMEINSIZE" id="frameinsize" value="${pd.frameinsize }" min="0" placeholder="这里输入边框内边距"
                                    title="边框内边距"/></td>
                     </tr>
                     <tr>
@@ -134,7 +140,7 @@
                     <tr>
                         <td><input type="text" name="QRSTYLE" id="qrstyle" value="${pd.qrstyle }" maxlength="10" placeholder="这里输入样式"
                                    title="样式"/></td>
-                        <td><input type="text" name="STYLEIMG" id="styleimg" value="${pd.styleimg }" maxlength="10" placeholder="这里输入样式图片"
+                        <td><input type="url" name="STYLEIMG" id="styleimg" value="${pd.styleimg }" maxlength="10" placeholder="这里输入样式图片"
                                    title="样式图片"/></td>
                     </tr>
                     <tr>

@@ -52,4 +52,20 @@ public class QrcodeImgService {
     public void save(PageData pd) throws Exception {
         dao.save("QrcodeMapper.save", pd);
     }
+
+    public void delete(PageData pd) throws Exception {
+        dao.delete("QrcodeMapper.delete", pd);
+    }
+
+    public void deleteAll(String[] dataIds) throws Exception {
+        dao.delete("QrcodeMapper.deleteAll", dataIds);
+    }
+
+    public PageData findById(PageData pd) throws Exception {
+        return (PageData) dao.findForObject("QrcodeMapper.findById", pd);
+    }
+
+    public void edit(PageData pd) throws Exception {
+        dao.update("QrcodeMapper.edit", pd);
+    }
 }
