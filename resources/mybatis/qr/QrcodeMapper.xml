@@ -5,7 +5,7 @@
 
 	<select id="findByLimitPage" parameterType="PageLimit" resultType="QrcodeImg">
 		select  * from tb_qrcode
-		where `index`=#{index} order by `_id` desc limit #{start},#{size};
+		where `index` LIKE CONCAT(CONCAT('%', #{index}),'%') order by `_id` desc limit #{start},#{size};
 	</select>
 
 	<select id="findAllByLimitPage" parameterType="PageLimit" resultType="QrcodeImg">
@@ -21,9 +21,11 @@
 	<update id="edit" parameterType="pd">
 		update tb_qrcode set
 		    `name`=#{NAME},
-			`size`=#{SIZE},
+			`width`=#{WIDTH},
+			`height`=#{HEIGHT},
 			x=#{X},
 			y=#{Y},
+			composite=#{COMPOSITE},
 			prev=#{PREV},
 			img=#{IMG},
 			rotate=#{ROTATE},
@@ -54,9 +56,11 @@
 	<insert id="save" parameterType="pd">
 		insert into tb_qrcode (
 		`name`,
-		`size`,
+		`width`,
+		`height`,
 		`x`,
 		`y`,
+		composite,
 		prev,
 		img,
 		rotate,
@@ -82,9 +86,11 @@
 		`index`
 		) values (
 		#{NAME},
-		#{SIZE},
+		#{WIDTH},
+		#{HEIGHT},
 		#{X},
 		#{Y},
+		#{COMPOSITE},
 		#{PREV},
 		#{IMG},
 		#{ROTATE},
@@ -116,11 +122,13 @@
 		select
 		a._id,
 		a.name,
-		a.size,
+		a.width,
+		a.height,
 		a.prev,
 		a.img,
 		a.x,
 		a.y,
+		a.composite,
 		a.rotate,
 		a.forecolor,
 		a.backcolor,
@@ -149,6 +157,8 @@
 			and
 			(
 			a.name LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
+			or
+			a.index LIKE CONCAT(CONCAT('%', #{pd.KEYW}),'%')
 			)
 		</if>
 		order by _id desc
@@ -175,9 +185,11 @@
 		select
 			_id,
 			`name`,
-			`size`,
+			`width`,
+			`height`,
 			`x`,
 			`y`,
+			composite,
 			prev,
 			img,
 			rotate,

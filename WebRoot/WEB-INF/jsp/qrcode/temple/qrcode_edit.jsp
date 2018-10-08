@@ -68,8 +68,14 @@
                                    title="模板名称"/></td>
                         <td><input type="text" name="INDEX" id="index" value="${pd.index }" maxlength="50" placeholder="这里输入索引"
                                    title="索引"/></td>
-                        <td><input type="number" name="SIZE" id="size" value="${pd.size }" min="200" max="1000" placeholder="这里输入大小"
-                                   title="大小"/></td>
+                        <td><input type="number" name="COMPOSITE" id="composite" value="${pd.composite }" maxlength="1" placeholder="是否合成"
+                                   title="合成"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" name="WIDTH" id="width" value="${pd.width }" min="200" max="1000" placeholder="这里输入宽度"
+                                   title="宽"/></td>
+                        <td><input type="number" name="HEIGHT" id="height" value="${pd.height }" min="200" max="1000" placeholder="这里输入高度"
+                                   title="高"/></td>
                     </tr>
                     <tr>
                         <td><input type="url" name="PREV" id="prev" value="${pd.prev }" maxlength="400" placeholder="这里输入预览图"
@@ -140,7 +146,7 @@
                     <tr>
                         <td><input type="text" name="QRSTYLE" id="qrstyle" value="${pd.qrstyle }" maxlength="10" placeholder="这里输入样式"
                                    title="样式"/></td>
-                        <td><input type="url" name="STYLEIMG" id="styleimg" value="${pd.styleimg }" maxlength="10" placeholder="这里输入样式图片"
+                        <td><input type="url" name="STYLEIMG" id="styleimg" value="${pd.styleimg }" maxlength="400" placeholder="这里输入样式图片"
                                    title="样式图片"/></td>
                     </tr>
                     <tr>

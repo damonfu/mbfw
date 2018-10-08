@@ -3,9 +3,10 @@ package com.mbfw.entity.qr;
 public class QrcodeImg {
     private int _id;
     private String name;               //名称
-    private int size;                  //大小
-    private int startX;                //x轴初始点
-    private int startY;                //y轴初始点
+    private int width;                 //宽
+    private int height;                //高
+    private int x;                     //x轴初始点
+    private int y;                     //y轴初始点
     private String prev;               //预览图
     private String img;                //模版图
     private int rotate;                //旋转度数
@@ -19,7 +20,7 @@ public class QrcodeImg {
     private String righteyestyle;      //右码眼样式
     private String righteyeoutcolor;   //右码眼外眼颜色
     private String righteyeincolor;    //右码眼内眼颜色
-    private String bottomeyesytle;     //下码眼样式
+    private String bottomeyestyle;     //下码眼样式
     private String bottomeyeoutcolor;  //下码眼外眼颜色
     private String bottomeyeincolor;   //下码眼内眼颜色
     private String framestyle;         //边框样式
@@ -29,6 +30,7 @@ public class QrcodeImg {
     private int frameinsize;           //边框内边距
     private String logo;               //logo图片
     private String index;              //索引
+    private int composite;             //合成
 
     public int get_id() {
         return _id;
@@ -46,28 +48,44 @@ public class QrcodeImg {
         this.name = name;
     }
 
-    public int getSize() {
-        return size;
+    public int getWidth() {
+        return width;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setWidth(int width) {
+        this.width = width;
     }
 
-    public int getStartX() {
-        return startX;
+    public int getHeight() {
+        return height;
     }
 
-    public void setStartX(int startX) {
-        this.startX = startX;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
-    public int getStartY() {
-        return startY;
+    public int getX() {
+        return x;
     }
 
-    public void setStartY(int startY) {
-        this.startY = startY;
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getComposite() {
+        return composite;
+    }
+
+    public void setComposite(int composite) {
+        this.composite = composite;
     }
 
     public String getPrev() {
@@ -174,12 +192,12 @@ public class QrcodeImg {
         this.righteyeincolor = righteyeincolor;
     }
 
-    public String getBottomeyesytle() {
-        return bottomeyesytle;
+    public String getBottomeyestyle() {
+        return bottomeyestyle;
     }
 
-    public void setBottomeyesytle(String bottomeyesytle) {
-        this.bottomeyesytle = bottomeyesytle;
+    public void setBottomeyestyle(String bottomeyestyle) {
+        this.bottomeyestyle = bottomeyestyle;
     }
 
     public String getBottomeyeoutcolor() {

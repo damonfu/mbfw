@@ -106,7 +106,8 @@ public class QrcodeImgManagerController extends BaseController {
             pd.put("framesize", 0);
             pd.put("frameoutsize", 0);
             pd.put("frameinsize", 0);
-            pd.put("size", 400);
+            pd.put("width", 400);
+            pd.put("height", 400);
             mv.addObject("pd", pd);
         } catch (Exception e) {
             logger.error(e.toString(), e);

@@ -59,7 +59,9 @@
 						<th>名称</th>
 						<th>预览图</th>
 						<th>模版</th>
-						<th>大小</th>
+						<th>宽</th>
+						<th>高</th>
+						<th>合成</th>
 						<th>X</th>
 						<th>Y</th>
 						<th>前景色</th>
@@ -104,7 +106,9 @@
 											<img src="${var.prev}" alt="${var.name}" width="80"/>
 										</td>
 										<td>${var.img}</td>
-										<td>${var.size}</td>
+										<td>${var.width}</td>
+								        <td>${var.height}</td>
+										<td>${var.composite}</td>
 										<td>${var.x}</td>
 								        <td>${var.y}</td>
 								        <td>${var.forecolor}</td>

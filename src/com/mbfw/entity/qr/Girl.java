@@ -9,6 +9,7 @@ public class Girl {
     private String publishedAt;
     private String source;
     private String url;
+    private String who;
     private boolean used;
     private List<String> images;
 
@@ -26,6 +27,14 @@ public class Girl {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getWho() {
+        return who;
+    }
+
+    public void setWho(String who) {
+        this.who = who;
     }
 
     public String getCreatedAt() {
