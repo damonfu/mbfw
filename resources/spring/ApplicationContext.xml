@@ -132,6 +132,7 @@
 				/uploadFiles/uploadImgs/** 	= anon
 	           	/code.do 					= anon
 				/girl/**                    = anon
+				/feedback/**                = anon
 				/qrcode/**                  = anon
 	           	/login_login	 			= anon
 	           	/app**/** 					= anon

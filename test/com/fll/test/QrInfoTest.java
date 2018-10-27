@@ -3,6 +3,7 @@ package com.fll.test;
 import com.mbfw.entity.qr.Girl;
 import com.mbfw.entity.qr.GirlResult;
 import com.mbfw.service.qr.GirlService;
+import com.mbfw.util.RightsHelper;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -26,15 +27,8 @@ public class QrInfoTest {
 
     @Test
     public void testInsertDataList() {
-        String json = readFile();
-        System.out.println(json);
-        List<Girl> girls = json2List(json, Girl.class);
-        System.out.println("size = "+girls.size());
-        try {
-            girlService.saveList(girls);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        boolean right = RightsHelper.testRights("67108854", "25");
+        System.out.println("right = " + right);
     }
 
     @Test
