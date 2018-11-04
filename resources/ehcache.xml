@@ -4,12 +4,12 @@
      
     <diskStore path="java.io.tmpdir" /> <!-- 缓存存放目录(此目录为放入系统默认缓存目录),也可以是”D:/cache“ java.io.tmpdir -->
     <defaultCache  
-            maxElementsInMemory="10000"  
+            maxElementsInMemory="100000"
             eternal="false"  
             timeToIdleSeconds="120"  
             timeToLiveSeconds="120"  
             overflowToDisk="true"  
-            maxElementsOnDisk="10000000"  
+            maxElementsOnDisk="10000000"
             diskPersistent="false"  
             diskExpiryThreadIntervalSeconds="120"  
             memoryStoreEvictionPolicy="LRU"  
