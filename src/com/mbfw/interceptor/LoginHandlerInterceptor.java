@@ -26,6 +26,21 @@ public class LoginHandlerInterceptor extends HandlerInterceptorAdapter {
 		String path = request.getServletPath();
 		if (path.matches(Const.NO_INTERCEPTOR_PATH)) {
 			return true;
+		} else if (path.matches(Const.OUTTER_PATH)) {
+			String tcache = request.getHeader("tcache");
+			if (tcache != null && tcache.length() > 3) {
+				tcache = tcache.substring(1, tcache.length()-1);
+				long timestamp = Long.parseLong(tcache, 16);
+				long currenttime = System.currentTimeMillis();
+				if (currenttime - timestamp < 30 * 1000 && currenttime - timestamp > 0) { //0 - 30s
+					return true;
+				}
+				String token = request.getHeader("token");
+				if (token != null && token.length() > 3) {
+					return token.startsWith("10");
+				}
+			}
+			return false;
 		} else {
 			// shiro管理的session
 			Subject currentUser = SecurityUtils.getSubject();

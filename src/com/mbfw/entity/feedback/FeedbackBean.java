@@ -12,13 +12,13 @@ public class FeedbackBean implements Serializable {
 
     private String ext;
 
-    private long createTime;
+    private String createTime;
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

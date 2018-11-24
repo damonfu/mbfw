@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/girl")
+@RequestMapping(value = "/xgirl")
 public class GirlController extends BaseController {
 
     @Resource(name = "girlService")

@@ -4,12 +4,14 @@ import com.mbfw.controller.base.BaseController;
 import com.mbfw.entity.feedback.FeedbackBean;
 import com.mbfw.entity.feedback.FeedbackResult;
 import com.mbfw.service.feedback.FeedbackService;
+import com.mbfw.util.Tools;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/feedback")
@@ -24,6 +26,7 @@ public class FeedbackController extends BaseController {
         FeedbackResult result = new FeedbackResult();
         try {
             bean.setId(this.get32UUID());
+            bean.setCreateTime(Tools.date2Str(new Date())); // 创建时间
             feedbackService.save(bean);
             result.setSuccess(true);
             return result;

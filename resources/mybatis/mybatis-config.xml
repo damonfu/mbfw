@@ -22,6 +22,7 @@
 		<typeAlias type="com.mbfw.entity.qr.PageLimit" alias="PageLimit"/>
 		<typeAlias type="com.mbfw.entity.qr.QrcodeImg" alias="QrcodeImg"/>
 		<typeAlias type="com.mbfw.entity.feedback.FeedbackBean" alias="FeedbackBean"/>
+		<typeAlias type="com.mbfw.entity.app.AppVersionBean" alias="AppVersionBean"/>
 	</typeAliases>
 	
 	<plugins>

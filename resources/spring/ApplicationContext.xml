@@ -131,11 +131,11 @@
 				/static/js/** 				= anon
 				/uploadFiles/uploadImgs/** 	= anon
 	           	/code.do 					= anon
-				/girl/**                    = anon
+				/xgirl/**                   = anon
 				/feedback/**                = anon
 				/qrcode/**                  = anon
 	           	/login_login	 			= anon
-	           	/app**/** 					= anon
+	           	/xapp/** 					= anon
 	           	/weixin/** 					= anon
 	           	/**							= authc
 				</value>
